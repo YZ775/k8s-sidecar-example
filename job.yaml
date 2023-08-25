@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: myjob
+spec:
+  template:
+    spec:
+      containers:
+        - name: app
+          image: app
+          imagePullPolicy: IfNotPresent
+      initContainers:
+        - name: sidecar
+          image: sidecar
+          imagePullPolicy: IfNotPresent
+          restartPolicy: Always
+      restartPolicy: Never
+
